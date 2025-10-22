@@ -155,7 +155,7 @@ const Navbar = () => {
                       className="absolute right-0 flex flex-col bg-white shadow-lg rounded-lg mt-2 min-w-[180px] z-50 p-2 gap-2"
                     >
                       <h2
-                        onClick={() => navigate("/mission")}
+                        onClick={() => navigate("/contact-list")}
                         className="px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer rounded-md"
                       >
                         contact list
