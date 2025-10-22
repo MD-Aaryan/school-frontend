@@ -10,6 +10,7 @@ import Home from "./pages/home";
 import Misson from "./pages/mission";
 import Member from "./pages/member";
 import Syllabus from "./pages/syllabus";
+import ContactList from "./pages/contactList";
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="/mission" element={<Misson />} />
           <Route path="/member" element={<Member />} />
           <Route path="/syllabus" element={<Syllabus />} />
+          <Route path="/contact-List" element={<ContactList />} />
 
           {/* Redirect unmatched routes to home */}
           <Route path="*" element={<Navigate to="/" replace />} />

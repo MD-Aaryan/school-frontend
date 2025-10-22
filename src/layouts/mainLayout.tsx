@@ -13,6 +13,7 @@ const Navbar = () => {
   const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
   const [logoutConfirmOpen, setLogoutConfirmOpen] = useState(false);
+  const [contactDropdownOpen, setContactDropdownOpen] = useState(false);
 
   const username = useAuthStore((state) => state.username);
   const email = useAuthStore((state) => state.email);
@@ -132,12 +133,38 @@ const Navbar = () => {
             >
               Syllabus
             </h2>
-            <h2
-              onClick={() => navigate("/contact")}
-              className="text-gray-800 hover:text-red-500 cursor-pointer transition "
+            <div
+              className="relative"
+              onMouseEnter={() => setContactDropdownOpen(true)}
+              onMouseLeave={() => setContactDropdownOpen(false)}
             >
-              Contact
-            </h2>
+              <h2
+                className="text-gray-800 hover:text-red-500 cursor-pointer transition "
+                onClick={() => navigate("/contact")}
+              >
+                contact{" "}
+              </h2>
+              {isAdmin && (
+                <AnimatePresence>
+                  {contactDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute right-0 flex flex-col bg-white shadow-lg rounded-lg mt-2 min-w-[180px] z-50 p-2 gap-2"
+                    >
+                      <h2
+                        onClick={() => navigate("/mission")}
+                        className="px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer rounded-md"
+                      >
+                        contact list
+                      </h2>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              )}
+            </div>
             <h2
               onClick={() => navigate("/gallary")}
               className="text-gray-800 hover:text-red-500 cursor-pointer transition "
@@ -231,6 +258,26 @@ const Navbar = () => {
                   {item.label}
                 </h2>
               ))}
+              <h2
+                onClick={() => {
+                  navigate("/member");
+                  setMobileMenuOpen(false);
+                }}
+                className="text-gray-800 hover:text-red-500 cursor-pointer"
+              >
+                Our Member
+              </h2>
+              {isAdmin && (
+                <h2
+                  onClick={() => {
+                    navigate("/contact-list");
+                    setMobileMenuOpen(false);
+                  }}
+                  className="text-red-600 hover:text-black cursor-pointer"
+                >
+                  contact list
+                </h2>
+              )}
 
               {isAdmin && (
                 <h2
